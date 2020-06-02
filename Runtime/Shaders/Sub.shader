@@ -1,4 +1,4 @@
-﻿Shader "Hidden/Mixture/Div"
+﻿Shader "Hidden/Mixture/Sub"
 {	
 	Properties
 	{
@@ -11,7 +11,7 @@
 		[InlineTexture]_SourceB_3D("Source B", 3D) = "white" {}
 		[InlineTexture]_SourceB_Cube("Source B", Cube) = "white" {}
 
-		_Color("Color", Color) = (1, 1, 1, 1)
+		_Color("Color", Color) = (0, 0, 0, 0)
 	}
 	SubShader
 	{
@@ -37,7 +37,7 @@
 			float4 mixture (v2f_customrendertexture i) : SV_Target
 			{
 				// The SAMPLE_X macro handles sampling for 2D, 3D and cube textures
-				return SAMPLE_X(_SourceA, i.localTexcoord.xyz, i.direction) / SAMPLE_X(_SourceB, i.localTexcoord.xyz, i.direction) / _Color;
+				return SAMPLE_X(_SourceA, i.localTexcoord.xyz, i.direction) - SAMPLE_X(_SourceB, i.localTexcoord.xyz, i.direction) - _Color;
 			}
 			ENDCG
 		}
