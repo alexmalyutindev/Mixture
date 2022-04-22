@@ -400,7 +400,9 @@ namespace Mixture
 		}
 	}
 
+	#if !T2DARRAY_EDITOR_OFF
 	[CustomEditor(typeof(Texture2DArray), false)]
+	#endif
 	class MixtureInspectorTexture2DArray : MixtureEditor
 	{
 		Texture2DArray	array;
